@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Quality Guardian"
+  short_description: "Guardrails for pragmatic code quality."
+  default_prompt: "Use this skill to audit or refactor code with minimal, evidence-based changes."
