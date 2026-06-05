@@ -13,6 +13,10 @@ Its central promise is simple: **change less, but better**.
 
 ## Why This Skill Exists
 
+<p align="center">
+  <img src="assets/logo-1.png" alt="Code Quality Guardian logo" width="320">
+</p>
+
 Coding agents can produce technically plausible changes that are larger than the problem:
 
 - unnecessary files and abstractions;
