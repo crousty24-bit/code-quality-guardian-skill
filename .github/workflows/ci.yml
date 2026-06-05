@@ -22,8 +22,8 @@ jobs:
           - "3.10"
           - "3.12"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
           python-version: ${{ matrix.python-version }}
       - name: Run standard-library tests
@@ -33,11 +33,11 @@ jobs:
     name: Agent Skills package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
           python-version: "3.12"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: "20"
       - name: Install Agent Skills reference validator
@@ -47,8 +47,15 @@ jobs:
       - name: Verify skills CLI discovery
         run: |
           npx --yes skills@1.5.10 add . --list --yes | tee /tmp/skills-list.txt
-          grep -q "Found 1 skill" /tmp/skills-list.txt
-          grep -q "code-quality-guardian" /tmp/skills-list.txt
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          output = Path("/tmp/skills-list.txt").read_text(encoding="utf-8")
+          clean = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", output)
+          assert "Found 1 skill" in clean
+          assert "code-quality-guardian" in clean
+          PY
       - name: Verify repository hygiene
         run: |
           test -z "$(git ls-files '*.pyc' '*__pycache__*')"
