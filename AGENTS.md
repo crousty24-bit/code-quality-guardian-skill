@@ -65,8 +65,45 @@ Toute évolution du skill doit respecter ces règles :
 - préférer une règle de délégation à une section exhaustive ;
 - garder `SKILL.md` compact ;
 - déplacer les détails longs dans `references/` seulement s'ils changent réellement le comportement de l'agent ;
-- n'ajouter que des scripts read-only, Python stdlib, sans réseau et sans rewrite ;
+- n'ajouter que des scripts de détection read-only, Python stdlib, sans réseau, rewrite ou exécution de commandes projet ;
 - ne pas prétendre à une publication stable avant exemples courts, tests terrain et retours réels.
+
+## Enseignements De La Phase Terrain 1
+
+La première campagne sur cinq repos confirme le comportement recherché :
+
+- l'agent observe avant de modifier ;
+- les changements restent limités et vérifiés ;
+- les scripts sont interprétés comme des signaux, pas comme des verdicts ;
+- la délégation reste conditionnelle au besoin réel ;
+- aucun refactor massif ou ajout d'architecture injustifié n'a été observé.
+
+Elle a aussi identifié trois limites à corriger :
+
+- les scripts initiaux favorisaient les conventions JavaScript et détectaient mal Rails ;
+- certains diagnostics confondaient une convention locale avec l'intention produit ;
+- la méthodologie ne prouve pas encore un gain causal face à une vraie baseline sans skill.
+
+Le support ajouté pour Rails/Ruby et Rust/Tauri reste ciblé sur des preuves terrain. Le projet ne doit pas annoncer une compatibilité universelle.
+
+## Enseignements De La Phase Terrain 2
+
+La seconde campagne confirme :
+
+- la détection effective de Rails/Ruby et Rust/Tauri sur des projets réels ;
+- la discipline de scope, le diff limité et la vérification honnête ;
+- l'amélioration de la précision des diagnostics et de la gestion de l'intention produit ;
+- l'absence de surarchitecture malgré des interventions multi-couches.
+
+Elle révèle aussi que la décision binaire `stay local` ou `delegate` est insuffisante. Un résultat métier local peut nécessiter une coordination multi-fichier ou une délégation spécialisée lorsque la sécurité, les migrations, les contrats persistants ou la concurrence sont matériels.
+
+Le skill distingue désormais :
+
+- `Level 1 Local` : intervention contenue et faible risque d'exécution ;
+- `Level 2 Coordinated` : objectif borné nécessitant plusieurs disciplines ou couches ;
+- `Level 3 Specialized` : risque matériel nécessitant une expertise dédiée.
+
+Code Quality Guardian conserve le contrôle du scope à tous les niveaux. Il orchestre les skills spécialisés sans copier leurs checklists.
 
 ## Futurs Skills Possibles Après Validation Terrain
 
@@ -79,6 +116,14 @@ Ne pas créer ces skills maintenant. Les garder en backlog jusqu'à ce que des v
 
 ## MVP Actuel
 
-Le repo est un MVP draft non publié.
+Le repo est publié comme MVP expérimental `0.1.0-beta.1` après deux phases de validation terrain.
 
-`templates/` est réservé pour une passe ultérieure. La licence MIT est définie. Les scripts restent strictement read-only.
+La licence MIT est définie. Les scripts restent strictement read-only et ne peuvent pas exécuter les commandes qu'ils détectent.
+
+Une version stable post-bêta exige encore :
+
+- une campagne comparative avec de vraies passes de contrôle sans skill installé ou activé ;
+- au moins un repo de réserve non utilisé pendant l'élaboration ;
+- le suivi séparé des faux positifs, de la taille des diffs et des vérifications réellement exécutées ;
+- la validation des trois niveaux d'intervention sur des scénarios distincts ;
+- la validation de l'installation publique depuis GitHub.

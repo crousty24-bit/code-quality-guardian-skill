@@ -1,4 +1,4 @@
 interface:
   display_name: "Code Quality Guardian"
-  short_description: "Guardrails for pragmatic code quality."
-  default_prompt: "Use this skill to audit or refactor code with minimal, evidence-based changes."
+  short_description: "Classify risk and constrain code changes."
+  default_prompt: "Use $code-quality-guardian to inspect this task, classify its intervention risk, coordinate only the necessary skills, and keep the change evidence-based and limited."

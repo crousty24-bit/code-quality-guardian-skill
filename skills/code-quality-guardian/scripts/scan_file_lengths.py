@@ -5,15 +5,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
+from _project_detection import is_excluded
 
-DEFAULT_EXCLUDES = {".git", "node_modules", "dist", "build", ".next", "coverage", ".venv", "venv"}
+
 LOCKFILES = {"package-lock.json", "pnpm-lock.yaml", "yarn.lock", "bun.lockb", "poetry.lock", "uv.lock"}
 TEXT_EXTENSIONS = {
     ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".json", ".md", ".css", ".scss",
-    ".html", ".yml", ".yaml", ".toml", ".txt", ".sh",
+    ".html", ".yml", ".yaml", ".toml", ".txt", ".sh", ".rb", ".rake", ".erb", ".rs",
 }
 
 
@@ -27,14 +29,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def should_skip(path: Path, root: Path, extra: list[str]) -> bool:
-    rel = path.relative_to(root)
-    parts = set(rel.parts)
-    if parts & DEFAULT_EXCLUDES:
-        return True
     if path.name in LOCKFILES:
         return True
-    text = str(rel)
-    return any(pattern and pattern in text for pattern in extra)
+    return is_excluded(path, root, extra)
 
 
 def count_lines(path: Path) -> int:
@@ -71,7 +68,8 @@ def main() -> int:
     args = parse_args()
     root = Path(args.root).resolve()
     if not root.exists() or not root.is_dir():
-        raise SystemExit(f"Invalid --root: {root}")
+        print(f"Invalid --root: {root}", file=sys.stderr)
+        return 2
     findings = scan(root, args.max_lines, args.exclude)
     result = {"root": str(root), "threshold": args.max_lines, "findings": findings}
     if args.format == "json":

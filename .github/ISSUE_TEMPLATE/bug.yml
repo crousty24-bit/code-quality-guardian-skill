@@ -1,0 +1,47 @@
+name: Bug report
+description: Report an installation, behavior, script, or documentation defect.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, proprietary code, or exploitable security details.
+        Use SECURITY.md for vulnerabilities.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 0.1.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, coding agent, Python version, and skills CLI version.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the prompt or command and the smallest reproducible context.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification evidence
+      description: Commands, outputs, intervention classification, diff size, or false positives.

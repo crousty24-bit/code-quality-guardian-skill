@@ -7,6 +7,8 @@ Use this before non-trivial refactors.
 - Identify the behavior that must stay the same.
 - Find callers, tests, and adjacent code.
 - Check whether the requested improvement is local or cross-cutting.
+- Classify execution risk independently from the apparent business scope.
+- Record unknowns before any Level 2 Coordinated or Level 3 Specialized refactor.
 - Determine whether missing tests make the refactor risky.
 - State the smallest safe refactor.
 - Ask whether this is real simplification or agent churn.
@@ -34,4 +36,5 @@ Stop and reassess when:
 - A new abstraction needs extensive explanation.
 - You need to change many callers for a cosmetic improvement.
 - Verification is unavailable and behavior risk is high.
+- An unknown could change the intervention level.
 - The refactor mainly makes the agent's preferred style replace the project's style.

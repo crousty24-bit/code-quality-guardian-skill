@@ -1,0 +1,44 @@
+name: Focused improvement
+description: Propose an evidence-backed improvement to the skill.
+title: "[Proposal]: "
+body:
+  - type: textarea
+    id: observed_problem
+    attributes:
+      label: Observed problem
+      description: Describe real usage or field-test evidence. Avoid abstract clean-code preferences.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_behavior
+    attributes:
+      label: Proposed behavior
+      description: Explain how agent behavior should change.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Skill workflow
+        - Risk classification
+        - Specialist orchestration
+        - Evidence scripts
+        - Compatibility
+        - Documentation
+        - Tests
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Scope boundaries
+      description: Explain what this proposal should not add or duplicate.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation approach
+      description: Describe how the improvement can be tested objectively.

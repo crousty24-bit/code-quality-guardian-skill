@@ -25,11 +25,12 @@ def run_json(script_dir: Path, script: str, root: Path, exclude: list[str]) -> d
         command.extend(["--exclude", item])
     completed = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if completed.returncode != 0:
-        return {"error": completed.stderr.strip() or completed.stdout.strip(), "script": script}
+        message = completed.stderr.strip() or completed.stdout.strip() or "unknown error"
+        raise RuntimeError(f"{script}: {message}")
     try:
         return json.loads(completed.stdout)
-    except json.JSONDecodeError:
-        return {"error": "invalid json output", "script": script}
+    except json.JSONDecodeError as error:
+        raise RuntimeError(f"{script}: invalid JSON output") from error
 
 
 def summarize(data: dict[str, Any]) -> dict[str, Any]:
@@ -50,7 +51,7 @@ def summarize(data: dict[str, Any]) -> dict[str, Any]:
         "limits": [
             "Signals are inspect candidates, not proof of bad code.",
             "Function length detection is heuristic, not a full AST analysis.",
-            "Quality checks are listed by default; they are not run by this summary.",
+            "Quality commands are detected only; they are never run by this summary.",
         ],
     }
 
@@ -80,8 +81,10 @@ def render_markdown(summary: dict[str, Any]) -> str:
     lines.append("## Available Verification Commands")
     if summary["quality_commands"]:
         for item in summary["quality_commands"]:
-            status = "safe" if item.get("safe_to_run") else "possible mutating command; inspect before running"
-            lines.append(f"- `{item['command']}` ({item['kind']}, {status})")
+            lines.append(
+                f"- `{item['command']}` "
+                f"({item['kind']}, {item.get('confidence', 'unknown')} confidence)"
+            )
     else:
         lines.append("- None detected")
     lines.append("")
@@ -95,15 +98,20 @@ def main() -> int:
     args = parse_args()
     root = Path(args.root).resolve()
     if not root.exists() or not root.is_dir():
-        raise SystemExit(f"Invalid --root: {root}")
+        print(f"Invalid --root: {root}", file=sys.stderr)
+        return 2
     script_dir = Path(__file__).resolve().parent
-    data = {
-        "root": str(root),
-        "conventions": run_json(script_dir, "project_conventions_probe.py", root, args.exclude),
-        "files": run_json(script_dir, "scan_file_lengths.py", root, args.exclude),
-        "functions": run_json(script_dir, "scan_function_lengths.py", root, args.exclude),
-        "checks": run_json(script_dir, "run_quality_checks.py", root, args.exclude),
-    }
+    try:
+        data = {
+            "root": str(root),
+            "conventions": run_json(script_dir, "project_conventions_probe.py", root, args.exclude),
+            "files": run_json(script_dir, "scan_file_lengths.py", root, args.exclude),
+            "functions": run_json(script_dir, "scan_function_lengths.py", root, args.exclude),
+            "checks": run_json(script_dir, "run_quality_checks.py", root, args.exclude),
+        }
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        return 2
     summary = summarize(data)
     if args.format == "json":
         print(json.dumps(summary, indent=2, sort_keys=True))

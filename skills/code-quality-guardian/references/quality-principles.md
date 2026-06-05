@@ -5,8 +5,11 @@ Use these principles as heuristics, not dogma. Prefer the principle that best re
 ## Orchestration Before Specialization
 
 - Start by deciding how much intervention the task actually needs.
+- Separate local business scope from implementation risk.
+- Classify the intervention as Level 1 Local, Level 2 Coordinated, or Level 3 Specialized.
 - Keep this skill as the scope and judgment layer.
 - Use specialized skills for deep review, simplification, testing, security, performance, or API design only when the evidence requires that depth.
+- Coordinate specialist disciplines without transferring or broadening the requested scope.
 - Do not copy specialized checklists into a general quality response.
 - If a specialized concern is only adjacent, mention it as follow-up instead of expanding the current change.
 
