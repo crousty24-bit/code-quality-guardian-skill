@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/crousty24-bit/code-quality-guardian-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/crousty24-bit/code-quality-guardian-skill/actions/workflows/ci.yml)
 [![skills.sh](https://skills.sh/b/crousty24-bit/code-quality-guardian-skill)](https://skills.sh/crousty24-bit/code-quality-guardian-skill)
-[![Release](https://img.shields.io/github/v/release/crousty24-bit/code-quality-guardian-skill?include_prereleases)](https://github.com/crousty24-bit/code-quality-guardian-skill/releases)
+[![Version](https://img.shields.io/github/v/tag/crousty24-bit/code-quality-guardian-skill?include_prereleases&sort=semver)](https://github.com/crousty24-bit/code-quality-guardian-skill/tree/0.1.0-beta.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Status:** MVP `0.1.0-beta.1`. Experimental, field-tested, and still under active evaluation.

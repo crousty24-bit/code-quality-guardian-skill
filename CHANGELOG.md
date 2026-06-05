@@ -43,4 +43,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Tracked Python bytecode and empty placeholder directories from the distributed skill.
 
 [Unreleased]: https://github.com/crousty24-bit/code-quality-guardian-skill/compare/0.1.0-beta.1...HEAD
-[0.1.0-beta.1]: https://github.com/crousty24-bit/code-quality-guardian-skill/releases/tag/0.1.0-beta.1
+[0.1.0-beta.1]: https://github.com/crousty24-bit/code-quality-guardian-skill/tree/0.1.0-beta.1
