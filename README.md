@@ -9,6 +9,10 @@
 
 Code Quality Guardian is an Agent Skill that disciplines how coding agents intervene in an existing codebase. It makes the agent inspect first, classify execution risk, constrain scope, preserve intended behavior, coordinate only necessary specialist skills, and report verification honestly.
 
+It is not a refactoring, architecture, or Clean Code checklist skill. It is an intervention governor for coding agents: it decides how much change is justified, when to stop, and when to route to a specialist.
+
+Guardian uses Clean Code, DRY, SOLID, CRUD, and refactoring principles as senior judgment tools, but its product is not a checklist. Its product is disciplined intervention.
+
 Its central promise is simple: **change less, but better**.
 
 ## Why This Skill Exists

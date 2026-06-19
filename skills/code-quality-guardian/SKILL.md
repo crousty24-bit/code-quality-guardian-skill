@@ -18,6 +18,12 @@ Optimize for an agent that changes less, but better.
 Act as a lightweight intervention-discipline orchestrator, not as a complete code-quality framework.
 Use it during audits, fixes, feature work, and refactors to decide the right depth of intervention, constrain scope, and route toward specialized practices only when evidence justifies them.
 
+Code Quality Guardian is not a refactoring, architecture, or Clean Code checklist skill.
+It is an intervention governor for coding agents: it decides how much change is justified, when to stop, and when to route to a specialist.
+
+Guardian uses Clean Code, DRY, SOLID, CRUD, and refactoring principles as senior judgment tools, but its product is not a checklist.
+Its product is disciplined intervention.
+
 The posture is that of a careful senior developer:
 
 - Observe before acting.
@@ -65,6 +71,17 @@ Justify the decision in one sentence. Coordination or delegation adds specialize
 
 Do not make code look cleaner by making the system harder to understand, test, or change.
 Improve the existing codebase from the inside: follow its conventions, preserve its behavior, and verify what you claim.
+
+## Senior Engineering Heuristics
+
+Use engineering principles as judgment tools, not doctrine.
+Prefer the principle that reduces the current verified risk with the smallest behavioral surface.
+
+- **DRY**: remove duplication only when repeated code represents the same concept, rule, or contract. Do not create an abstraction for code that merely looks similar.
+- **SOLID**: apply these principles only when they reduce verified coupling, protect a contract, or make the current change safer. Do not add interfaces, layers, or indirection just to satisfy a principle.
+- **Clean Code**: improve local comprehension through clearer names, explicit flow, cohesive functions, and comments for non-obvious constraints. Do not rewrite style that is already understandable and conventional for the project.
+- **CRUD**: create, read, update, and delete changes are not automatically local. Reclassify by data risk and caller impact when persistence, authorization, validation, migrations, idempotency, or public response shape is involved.
+- **Monolith vs decomposition**: decompose only when the extracted part has a stable name, coherent responsibility, reused behavior, independent test value, or reduced verified change risk. Keep logic together when extraction only hides sequential flow, spreads state, or adds parameter plumbing.
 
 ## Workflow
 
@@ -200,6 +217,7 @@ Load reference files only when they are relevant:
 
 - Read `references/quality-principles.md` for general code-quality judgment.
 - Read `references/intervention-risk-classification.md` before a non-obvious Level 2 or Level 3 decision.
+- Read `references/senior-engineering-heuristics.md` when a task involves DRY, SOLID, Clean Code, CRUD behavior, long functions, decomposition, or whether to refactor at all.
 - Read `references/refactoring-checklist.md` before non-trivial refactors.
 - Read `references/testing-guidelines.md` when adding, changing, or recommending tests.
 - Read `references/typescript-guidelines.md` only for TypeScript or typed JavaScript work.
@@ -214,5 +232,7 @@ Load examples only when the expected behavior is unclear:
 - Read `examples/no-change-justified.md` when an audit may correctly conclude that no edit is warranted.
 - Read `examples/coordinated-multi-transport-validation.md` for a bounded Level 2 change across transports.
 - Read `examples/specialized-endpoint-migration.md` for a Level 3 change involving endpoints, data, and concurrency.
+- Read `examples/monolithic-logic-decomposition.md` when a request asks to split long or dense logic.
+- Read `examples/crud-change-risk-classification.md` when a small CRUD request may touch data, permissions, or response contracts.
 
 Keep `SKILL.md` as the operating procedure. Use references for details, not as a reason to broaden scope.
