@@ -13,6 +13,7 @@ VERSION = "0.1.0-beta.1"
 
 EXPECTED_SCRIPTS = {
     "_project_detection.py",
+    "_rendering.py",
     "project_conventions_probe.py",
     "risk_summary.py",
     "run_quality_checks.py",

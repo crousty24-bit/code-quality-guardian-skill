@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from _rendering import inline_code, untrusted_note
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Summarize read-only code-quality signals.")
@@ -57,24 +59,28 @@ def summarize(data: dict[str, Any]) -> dict[str, Any]:
 
 
 def render_markdown(summary: dict[str, Any]) -> str:
-    lines = ["# Code Quality Risk Summary", "", f"- Root: `{summary['root']}`"]
-    lines.append(f"- Package manager: `{summary.get('package_manager') or 'unknown'}`")
+    lines = ["# Code Quality Risk Summary", "", f"- Root: {inline_code(summary['root'])}"]
+    lines.append(f"- Package manager: {inline_code(summary.get('package_manager') or 'unknown')}")
     lines.append(f"- Likely frameworks: {', '.join(summary['frameworks']) if summary['frameworks'] else 'none detected'}")
     lines.append(f"- Quality commands detected: {summary['quality_command_count']}")
     lines.append(f"- Long files over threshold: {summary['long_file_count']}")
     lines.append(f"- Long functions over threshold: {summary['long_function_count']}")
+    lines.append(f"- {untrusted_note()}")
     lines.append("")
     lines.append("## Inspect Candidates")
     if summary["long_files"]:
         lines.append("")
         lines.append("### Long Files")
         for item in summary["long_files"]:
-            lines.append(f"- `{item['path']}` ({item['lines']} lines)")
+            lines.append(f"- {inline_code(item['path'])} ({inline_code(item['lines'])} lines)")
     if summary["long_functions"]:
         lines.append("")
         lines.append("### Long Functions")
         for item in summary["long_functions"]:
-            lines.append(f"- `{item['name']}` in `{item['path']}` line {item['start_line']} ({item['lines']} lines)")
+            lines.append(
+                f"- {inline_code(item['name'])} in {inline_code(item['path'])} "
+                f"line {inline_code(item['start_line'])} ({inline_code(item['lines'])} lines)"
+            )
     if not summary["long_files"] and not summary["long_functions"]:
         lines.append("- No length-based inspect candidates found with default thresholds.")
     lines.append("")
@@ -82,8 +88,8 @@ def render_markdown(summary: dict[str, Any]) -> str:
     if summary["quality_commands"]:
         for item in summary["quality_commands"]:
             lines.append(
-                f"- `{item['command']}` "
-                f"({item['kind']}, {item.get('confidence', 'unknown')} confidence)"
+                f"- {inline_code(item['command'])} "
+                f"({inline_code(item['kind'])}, {inline_code(item.get('confidence', 'unknown'))} confidence)"
             )
     else:
         lines.append("- None detected")

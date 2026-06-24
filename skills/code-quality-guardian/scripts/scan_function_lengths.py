@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from _project_detection import is_excluded
+from _rendering import inline_code, table_cell, untrusted_note
 
 
 CODE_EXTENSIONS = {".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".rb", ".rake", ".rs"}
@@ -185,9 +186,10 @@ def render_markdown(root: Path, findings: list[dict[str, Any]], max_lines: int) 
     lines = [
         "# Long Function Scan",
         "",
-        f"- Root: `{root}`",
-        f"- Threshold: `{max_lines}` lines",
+        f"- Root: {inline_code(root)}",
+        f"- Threshold: {inline_code(max_lines)} lines",
         "- Note: this is a heuristic signal, not a full AST analysis.",
+        f"- {untrusted_note()}",
         "",
     ]
     if not findings:
@@ -196,7 +198,12 @@ def render_markdown(root: Path, findings: list[dict[str, Any]], max_lines: int) 
     lines.append("| Function | File | Start | Lines | Confidence |")
     lines.append("|---|---|---:|---:|---|")
     for item in findings:
-        lines.append(f"| `{item['name']}` | `{item['path']}` | {item['start_line']} | {item['lines']} | {item['confidence']} |")
+        lines.append(
+            f"| {inline_code(item['name'])} | "
+            f"{inline_code(item['path'])} | "
+            f"{table_cell(item['start_line'])} | {table_cell(item['lines'])} | "
+            f"{table_cell(item['confidence'])} |"
+        )
     return "\n".join(lines) + "\n"
 
 

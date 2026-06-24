@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from _project_detection import inspect_project
+from _rendering import inline_code, untrusted_note
 
 
 def parse_args() -> argparse.Namespace:
@@ -22,21 +23,25 @@ def parse_args() -> argparse.Namespace:
 
 def render_markdown(result: dict[str, Any]) -> str:
     lines = ["# Project Conventions Probe", ""]
-    lines.append(f"- Root: `{result['root']}`")
-    lines.append(f"- Package manager: `{result.get('package_manager') or 'unknown'}`")
+    lines.append(f"- Root: {inline_code(result['root'])}")
+    lines.append(f"- Package manager: {inline_code(result.get('package_manager') or 'unknown')}")
+    lines.append(f"- {untrusted_note()}")
     lines.append("")
     lines.append("## Config Files")
     for item in result["configs"] or ["None detected"]:
-        lines.append(f"- {item}")
+        lines.append(f"- {inline_code(item)}")
     lines.append("")
     lines.append("## Likely Frameworks")
     for item in result["frameworks"] or ["None detected"]:
-        lines.append(f"- {item}")
+        lines.append(f"- {inline_code(item)}")
     lines.append("")
     lines.append("## Quality Commands")
     if result["quality_commands"]:
         for command in result["quality_commands"]:
-            lines.append(f"- `{command['command']}` ({command['kind']}, {command['confidence']} confidence)")
+            lines.append(
+                f"- {inline_code(command['command'])} "
+                f"({inline_code(command['kind'])}, {inline_code(command['confidence'])} confidence)"
+            )
     else:
         lines.append("- None detected")
     return "\n".join(lines) + "\n"
