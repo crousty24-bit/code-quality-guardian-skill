@@ -11,6 +11,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Comparative Phase 3 field testing against a true baseline without the skill.
 - Additional compatibility evidence from previously unseen repositories.
 
+## [0.2.0-beta.1] - 2026-06-24
+
+### Added
+
+- Senior engineering heuristics for DRY, SOLID, Clean Code, CRUD risk, and monolith decomposition decisions.
+- Examples for CRUD risk classification and long-logic decomposition.
+- Centralized Markdown rendering helpers for safer display of untrusted repository-derived values.
+- Regression coverage for hostile paths, function names, detected commands, and script read-only behavior.
+
+### Changed
+
+- Clarified that Code Quality Guardian is an intervention governor, not a refactoring, architecture, or Clean Code checklist.
+- Strengthened intervention-risk guidance for local business outcomes that still cross persistence, authorization, migrations, contracts, or concurrency.
+- Expanded script detection and scanning support for Rails/Ruby and Rust/Tauri evidence.
+- Updated CI dependency pins for the GitHub Actions workflow.
+
+### Fixed
+
+- Neutralized Markdown output from evidence scripts so repository-controlled paths, names, sources, and detected commands remain observation data instead of actionable instructions.
+- Reduced false confidence around detected project conventions by adding explicit safety notes to script output.
+
 ## [0.1.0-beta.1] - 2026-06-05
 
 ### Added
@@ -42,5 +63,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Tracked Python bytecode and empty placeholder directories from the distributed skill.
 
-[Unreleased]: https://github.com/crousty24-bit/code-quality-guardian-skill/compare/0.1.0-beta.1...HEAD
+[Unreleased]: https://github.com/crousty24-bit/code-quality-guardian-skill/compare/0.2.0-beta.1...HEAD
+[0.2.0-beta.1]: https://github.com/crousty24-bit/code-quality-guardian-skill/compare/0.1.0-beta.1...0.2.0-beta.1
 [0.1.0-beta.1]: https://github.com/crousty24-bit/code-quality-guardian-skill/tree/0.1.0-beta.1

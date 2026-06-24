@@ -70,6 +70,15 @@ Run the full suite before submitting:
 python3 -m unittest discover -s tests -v
 ```
 
+## Release Preparation
+
+Before a beta release:
+
+- update the version in `skills/code-quality-guardian/SKILL.md` and matching metadata tests;
+- update `README.md`, `CHANGELOG.md`, `SECURITY.md`, and issue placeholders when the public supported version changes;
+- keep release notes focused on user-visible behavior, scope discipline, script safety, compatibility, and verification;
+- tag only the final release commit on `main` after the release merge is validated.
+
 ## Pull Requests
 
 Include:

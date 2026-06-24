@@ -2,12 +2,16 @@
 
 [![CI](https://github.com/crousty24-bit/code-quality-guardian-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/crousty24-bit/code-quality-guardian-skill/actions/workflows/ci.yml)
 [![skills.sh](https://skills.sh/b/crousty24-bit/code-quality-guardian-skill)](https://skills.sh/crousty24-bit/code-quality-guardian-skill)
-[![Version](https://img.shields.io/github/v/tag/crousty24-bit/code-quality-guardian-skill?include_prereleases&sort=semver)](https://github.com/crousty24-bit/code-quality-guardian-skill/tree/0.1.0-beta.1)
+[![Version](https://img.shields.io/github/v/tag/crousty24-bit/code-quality-guardian-skill?include_prereleases&sort=semver)](https://github.com/crousty24-bit/code-quality-guardian-skill/tree/0.2.0-beta.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Status:** MVP `0.1.0-beta.1`. Experimental, field-tested, and still under active evaluation.
+**Status:** Beta `0.2.0-beta.1`. Experimental, field-tested, and still under active evaluation.
 
 Code Quality Guardian is an Agent Skill that disciplines how coding agents intervene in an existing codebase. It makes the agent inspect first, classify execution risk, constrain scope, preserve intended behavior, coordinate only necessary specialist skills, and report verification honestly.
+
+It is not a refactoring, architecture, or Clean Code checklist skill. It is an intervention governor for coding agents: it decides how much change is justified, when to stop, and when to route to a specialist.
+
+Guardian uses Clean Code, DRY, SOLID, CRUD, and refactoring principles as senior judgment tools, but its product is not a checklist. Its product is disciplined intervention.
 
 Its central promise is simple: **change less, but better**.
 
@@ -232,10 +236,11 @@ The current suite covers project detection, Rails/Ruby, Rust/Tauri, NestJS, Pyth
 
 ## Beta Status And Limitations
 
-Version `0.1.0-beta.1` is an experimental MVP:
+Version `0.2.0-beta.1` is an experimental beta:
 
 - two field-test phases have validated absolute behavior on several real repositories;
 - Rails/Ruby and Rust/Tauri detection has been exercised on real projects;
+- scope classification, decomposition guidance, and script-output guardrails have been strengthened after feature and security-audit feedback;
 - comparative improvement over the same agent without the skill is not yet proven;
 - heuristic function scanning can produce false positives;
 - specialist orchestration still requires broader comparative testing;

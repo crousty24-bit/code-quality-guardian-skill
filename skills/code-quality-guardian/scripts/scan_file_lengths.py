@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from _project_detection import is_excluded
+from _rendering import inline_code, table_cell, untrusted_note
 
 
 LOCKFILES = {"package-lock.json", "pnpm-lock.yaml", "yarn.lock", "bun.lockb", "poetry.lock", "uv.lock"}
@@ -53,14 +54,24 @@ def scan(root: Path, max_lines: int, exclude: list[str]) -> list[dict[str, Any]]
 
 
 def render_markdown(root: Path, findings: list[dict[str, Any]], max_lines: int) -> str:
-    lines = ["# Long File Scan", "", f"- Root: `{root}`", f"- Threshold: `{max_lines}` lines", ""]
+    lines = [
+        "# Long File Scan",
+        "",
+        f"- Root: {inline_code(root)}",
+        f"- Threshold: {inline_code(max_lines)} lines",
+        f"- {untrusted_note()}",
+        "",
+    ]
     if not findings:
         lines.append("No files exceeded the threshold.")
         return "\n".join(lines) + "\n"
     lines.append("| File | Lines | Threshold |")
     lines.append("|---|---:|---:|")
     for item in findings:
-        lines.append(f"| `{item['path']}` | {item['lines']} | {item['threshold']} |")
+        lines.append(
+            f"| {inline_code(item['path'])} | "
+            f"{table_cell(item['lines'])} | {table_cell(item['threshold'])} |"
+        )
     return "\n".join(lines) + "\n"
 
 

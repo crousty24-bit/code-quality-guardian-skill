@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from _project_detection import inspect_project
+from _rendering import inline_code, table_cell, untrusted_note
 
 
 def parse_args() -> argparse.Namespace:
@@ -22,7 +23,13 @@ def parse_args() -> argparse.Namespace:
 
 
 def render_markdown(root: Path, rows: list[dict[str, Any]]) -> str:
-    lines = ["# Detected Quality Checks", "", f"- Root: `{root}`", ""]
+    lines = [
+        "# Detected Quality Checks",
+        "",
+        f"- Root: {inline_code(root)}",
+        f"- {untrusted_note()}",
+        "",
+    ]
     if not rows:
         lines.append("No quality checks detected.")
         return "\n".join(lines) + "\n"
@@ -30,8 +37,8 @@ def render_markdown(root: Path, rows: list[dict[str, Any]]) -> str:
     lines.append("|---|---|---|---|---|")
     for item in rows:
         lines.append(
-            f"| {item['kind']} | `{item['command']}` | detected | "
-            f"{item['source']} | {item['confidence']} |"
+            f"| {table_cell(item['kind'])} | {inline_code(item['command'])} | "
+            f"detected | {table_cell(item['source'])} | {table_cell(item['confidence'])} |"
         )
     return "\n".join(lines) + "\n"
 

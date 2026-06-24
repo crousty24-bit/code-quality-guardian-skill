@@ -9,10 +9,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = REPO_ROOT / "skills"
 SKILL_ROOT = SKILLS_ROOT / "code-quality-guardian"
 SKILL_FILE = SKILL_ROOT / "SKILL.md"
-VERSION = "0.1.0-beta.1"
+VERSION = "0.2.0-beta.1"
 
 EXPECTED_SCRIPTS = {
     "_project_detection.py",
+    "_rendering.py",
     "project_conventions_probe.py",
     "risk_summary.py",
     "run_quality_checks.py",
