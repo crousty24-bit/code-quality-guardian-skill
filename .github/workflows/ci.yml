@@ -60,4 +60,4 @@ jobs:
         run: |
           test -z "$(git ls-files '*.pyc' '*__pycache__*')"
           test "$(find skills -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1
-          test "$(find skills/code-quality-guardian/scripts -maxdepth 1 -type f -name '*.py' | wc -l)" -eq 6
+          test "$(find skills/code-quality-guardian/scripts -maxdepth 1 -type f -name '*.py' | wc -l)" -eq 7
