@@ -1,129 +1,129 @@
-# Code Quality Guardian - Vision Projet
+# Code Quality Guardian - Project Vision
 
-## Postulat
+## Premise
 
-Code Quality Guardian existe parce que les agents IA produisent souvent trop de code, trop vite, avec trop de certitude.
+Code Quality Guardian exists because AI agents often produce too much code, too quickly, with too much certainty.
 
-Le risque cible n'est pas seulement du "mauvais code". Le risque cible est l'intervention agentique mal disciplinée :
+The target risk is not only "bad code". The target risk is poorly disciplined agentic intervention:
 
-- ajouter des fichiers inutiles ;
-- créer des abstractions décoratives ;
-- importer une architecture étrangère au projet ;
-- ajouter des dépendances sans justification ;
-- refactorer trop large ;
-- changer du comportement sans le dire ;
-- prétendre avoir vérifié sans preuve.
+- adding unnecessary files;
+- creating decorative abstractions;
+- importing an architecture that is foreign to the project;
+- adding dependencies without justification;
+- refactoring too broadly;
+- changing behavior without saying so;
+- claiming verification without evidence.
 
-## Vision MVP
+## MVP Vision
 
-Le skill doit rester un orchestrateur léger de discipline d'intervention.
+The skill must remain a lightweight orchestrator for intervention discipline.
 
-Il doit aider l'agent à :
+It should help the agent:
 
-- observer avant d'agir ;
-- limiter le diff ;
-- préserver le comportement existant ;
-- respecter les conventions de la codebase ;
-- décider quand une pratique spécialisée est réellement nécessaire ;
-- vérifier honnêtement ce qui a été fait.
+- observe before acting;
+- limit the diff;
+- preserve existing behavior;
+- respect the codebase conventions;
+- decide when a specialized practice is genuinely necessary;
+- report verification honestly.
 
-La promesse centrale est : changer moins, mais mieux.
+The central promise is: change less, but better.
 
-## Ce Que Ce Skill N'Est Pas
+## What This Skill Is Not
 
-Code Quality Guardian n'est pas :
+Code Quality Guardian is not:
 
-- un guide exhaustif de clean code ;
-- une copie de `code-review-and-quality` ;
-- une copie de `code-simplification` ;
-- un framework complet de review, sécurité, performance, tests ou architecture ;
-- un skill framework-specific ;
-- un prétexte pour élargir chaque tâche à une refonte globale.
+- an exhaustive clean-code guide;
+- a copy of `code-review-and-quality`;
+- a copy of `code-simplification`;
+- a complete framework for review, security, performance, tests, or architecture;
+- a framework-specific skill;
+- a pretext for expanding every task into a global redesign.
 
-Les skills spécialisés restent les meilleures références pour leur domaine. Code Quality Guardian décide quand les invoquer ou s'en inspirer.
+Specialized skills remain the best references for their domains. Code Quality Guardian decides when to invoke or draw from them.
 
-## Références Conceptuelles
+## Conceptual References
 
-Les notes Obsidian du projet sont la vérité initiale pour la vision et le positionnement.
+The project's Obsidian notes are the initial source of truth for vision and positioning.
 
-Les skills suivants sont des références de patterns validés, pas du contenu à recopier :
+The following skills are references for validated patterns, not content to copy:
 
-- `code-review-and-quality` pour les axes de review, la taille des changements et la discipline de dépendances ;
-- `code-simplification` pour préserver le comportement et éviter le churn ;
-- `incremental-implementation` pour les petits incréments vérifiables ;
-- `test-driven-development` pour les bug fixes et comportements critiques ;
-- `debugging-and-error-recovery` pour le diagnostic fondé sur preuves ;
-- `api-and-interface-design`, `security-and-hardening`, `performance-optimization` et `git-workflow-and-versioning` pour les concerns spécialisés.
+- `code-review-and-quality` for review axes, change size, and dependency discipline;
+- `code-simplification` for preserving behavior and avoiding churn;
+- `incremental-implementation` for small verifiable increments;
+- `test-driven-development` for bug fixes and critical behavior;
+- `debugging-and-error-recovery` for evidence-based diagnostics;
+- `api-and-interface-design`, `security-and-hardening`, `performance-optimization`, and `git-workflow-and-versioning` for specialized concerns.
 
-## Règles D'Évolution
+## Evolution Rules
 
-Toute évolution du skill doit respecter ces règles :
+Every evolution of the skill must follow these rules:
 
-- renforcer la différenciation anti-surproduction IA ;
-- rester courte et actionnable ;
-- éviter de copier des checklists spécialisées ;
-- préférer une règle de délégation à une section exhaustive ;
-- garder `SKILL.md` compact ;
-- déplacer les détails longs dans `references/` seulement s'ils changent réellement le comportement de l'agent ;
-- n'ajouter que des scripts de détection read-only, Python stdlib, sans réseau, rewrite ou exécution de commandes projet ;
-- ne pas prétendre à une publication stable avant exemples courts, tests terrain et retours réels.
+- strengthen the distinction against AI overproduction;
+- stay short and actionable;
+- avoid copying specialized checklists;
+- prefer a delegation rule over an exhaustive section;
+- keep `SKILL.md` compact;
+- move long details into `references/` only if they materially change agent behavior;
+- add only read-only detection scripts, using the Python standard library, with no network access, rewrites, or execution of project commands;
+- do not claim a stable publication before short examples, field tests, and real feedback.
 
-## Enseignements De La Phase Terrain 1
+## Field Phase 1 Lessons
 
-La première campagne sur cinq repos confirme le comportement recherché :
+The first campaign across five repositories confirms the desired behavior:
 
-- l'agent observe avant de modifier ;
-- les changements restent limités et vérifiés ;
-- les scripts sont interprétés comme des signaux, pas comme des verdicts ;
-- la délégation reste conditionnelle au besoin réel ;
-- aucun refactor massif ou ajout d'architecture injustifié n'a été observé.
+- the agent observes before modifying;
+- changes remain limited and verified;
+- scripts are interpreted as signals, not verdicts;
+- delegation remains conditional on a real need;
+- no massive refactor or unjustified architecture addition was observed.
 
-Elle a aussi identifié trois limites à corriger :
+It also identified three limits to correct:
 
-- les scripts initiaux favorisaient les conventions JavaScript et détectaient mal Rails ;
-- certains diagnostics confondaient une convention locale avec l'intention produit ;
-- la méthodologie ne prouve pas encore un gain causal face à une vraie baseline sans skill.
+- the initial scripts favored JavaScript conventions and detected Rails poorly;
+- some diagnostics confused a local convention with product intent;
+- the methodology does not yet prove a causal gain against a true baseline without the skill.
 
-Le support ajouté pour Rails/Ruby et Rust/Tauri reste ciblé sur des preuves terrain. Le projet ne doit pas annoncer une compatibilité universelle.
+The added Rails/Ruby and Rust/Tauri support remains targeted at field evidence. The project must not claim universal compatibility.
 
-## Enseignements De La Phase Terrain 2
+## Field Phase 2 Lessons
 
-La seconde campagne confirme :
+The second campaign confirms:
 
-- la détection effective de Rails/Ruby et Rust/Tauri sur des projets réels ;
-- la discipline de scope, le diff limité et la vérification honnête ;
-- l'amélioration de la précision des diagnostics et de la gestion de l'intention produit ;
-- l'absence de surarchitecture malgré des interventions multi-couches.
+- effective Rails/Ruby and Rust/Tauri detection on real projects;
+- scope discipline, limited diffs, and honest verification;
+- improved diagnostic precision and better handling of product intent;
+- no over-architecture despite multi-layer interventions.
 
-Elle révèle aussi que la décision binaire `stay local` ou `delegate` est insuffisante. Un résultat métier local peut nécessiter une coordination multi-fichier ou une délégation spécialisée lorsque la sécurité, les migrations, les contrats persistants ou la concurrence sont matériels.
+It also shows that the binary decision `stay local` or `delegate` is insufficient. A local business outcome can require multi-file coordination or specialized delegation when security, migrations, persistent contracts, or concurrency are material.
 
-Le skill distingue désormais :
+The skill now distinguishes:
 
-- `Level 1 Local` : intervention contenue et faible risque d'exécution ;
-- `Level 2 Coordinated` : objectif borné nécessitant plusieurs disciplines ou couches ;
-- `Level 3 Specialized` : risque matériel nécessitant une expertise dédiée.
+- `Level 1 Local`: contained intervention with low execution risk;
+- `Level 2 Coordinated`: bounded outcome requiring several disciplines or layers;
+- `Level 3 Specialized`: material risk requiring dedicated expertise.
 
-Code Quality Guardian conserve le contrôle du scope à tous les niveaux. Il orchestre les skills spécialisés sans copier leurs checklists.
+Code Quality Guardian keeps scope control at every level. It orchestrates specialized skills without copying their checklists.
 
-## Futurs Skills Possibles Après Validation Terrain
+## Possible Future Skills After Field Validation
 
-Ne pas créer ces skills maintenant. Les garder en backlog jusqu'à ce que des validations terrain montrent un workflow autonome, utile seul et distinct de `code-quality-guardian`.
+Do not create these skills now. Keep them in the backlog until field validation shows an autonomous workflow that is useful on its own and distinct from `code-quality-guardian`.
 
-- `agent-change-auditor` : auditer un diff ou une PR générée par agent pour détecter scope creep, fichiers inattendus, vérification manquante et dépendances ajoutées.
-- `codebase-risk-scout` : cartographier les zones à risque avant intervention à partir de signaux read-only.
-- `verification-discipline` : cadrer la stratégie de vérification et distinguer preuve, signal et hypothèse non vérifiée.
-- `refactor-scope-control` : refuser ou réduire les refactors trop larges quand une intervention locale suffit.
+- `agent-change-auditor`: audit an agent-generated diff or PR to detect scope creep, unexpected files, missing verification, and added dependencies.
+- `codebase-risk-scout`: map risk areas before intervention from read-only signals.
+- `verification-discipline`: frame the verification strategy and distinguish proof, signal, and unverified hypothesis.
+- `refactor-scope-control`: refuse or reduce overly broad refactors when a local intervention is enough.
 
-## MVP Actuel
+## Current Beta
 
-Le repo est publié comme MVP expérimental `0.1.0-beta.1` après deux phases de validation terrain.
+The repository is prepared for beta `0.2.0-beta.1` after two field validation phases, scope and guardrail improvements, and a fix related to the Snyk security audit.
 
-La licence MIT est définie. Les scripts restent strictement read-only et ne peuvent pas exécuter les commandes qu'ils détectent.
+The MIT license is defined. Scripts remain strictly read-only, cannot execute the commands they detect, and must treat detected paths, names, sources, and commands as untrusted data.
 
-Une version stable post-bêta exige encore :
+A stable post-beta version still requires:
 
-- une campagne comparative avec de vraies passes de contrôle sans skill installé ou activé ;
-- au moins un repo de réserve non utilisé pendant l'élaboration ;
-- le suivi séparé des faux positifs, de la taille des diffs et des vérifications réellement exécutées ;
-- la validation des trois niveaux d'intervention sur des scénarios distincts ;
-- la validation de l'installation publique depuis GitHub.
+- a comparative campaign with real control passes without the skill installed or activated;
+- at least one reserve repository not used during development;
+- separate tracking for false positives, diff size, and verification actually executed;
+- validation of the three intervention levels on distinct scenarios;
+- validation of public installation from GitHub.

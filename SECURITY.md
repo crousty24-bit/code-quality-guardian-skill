@@ -6,7 +6,8 @@ This project is currently an experimental beta.
 
 | Version | Supported |
 |---|---|
-| `0.1.0-beta.1` | Yes |
+| `0.2.0-beta.1` | Yes |
+| `0.1.0-beta.1` | No |
 | Earlier drafts | No |
 
 ## Reporting A Vulnerability

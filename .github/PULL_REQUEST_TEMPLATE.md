@@ -23,6 +23,7 @@ npx skills add . --list --yes
 - [ ] No runtime dependency, network access, or mutating script behavior was added.
 - [ ] New references or examples are linked from `SKILL.md`.
 - [ ] Documentation and changelog are updated when user-visible behavior changes.
+- [ ] Release metadata is updated when the supported public version changes.
 
 ## Remaining Uncertainty
 

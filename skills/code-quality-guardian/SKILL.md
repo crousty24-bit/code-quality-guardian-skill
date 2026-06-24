@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Works with Agent Skills-compatible coding agents. Optional evidence scripts require Python 3.10+ and use no third-party packages or network access."
 metadata:
   author: crousty24-bit
-  version: "0.1.0-beta.1"
+  version: "0.2.0-beta.1"
 ---
 
 # Code Quality Guardian
